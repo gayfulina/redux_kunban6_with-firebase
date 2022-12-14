@@ -2,11 +2,11 @@ import Column from "./Status";
 
 const Board = (props) => {
     return (
-        <div className='row'>
+        <div className='row bg-light'>
             {props.statuses.map(el =>
                 <Column
                     key={el.id}
-                    statuses={el}
+                    status={el}
                     cards={props.cards}
                 />
             )}

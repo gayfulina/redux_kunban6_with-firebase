@@ -108,9 +108,47 @@ export function updateCard(cardId, updatedCard) {
         axios({
             method: 'PATCH',
             url: `https://kanban-bb570-default-rtdb.firebaseio.com/cards/${cardId}.json`,
-            data:  updatedCard
+            data: updatedCard
         })
             .then(res => dispatch(getCards()))
             .catch(err => console.log(err, 'UPDATE CARD ERROR'))
+    }
+}
+
+export function updateStatus(statusId, updatedStatus) {
+    return (dispatch) => {
+        axios({
+            method: 'PATCH',
+            url: `https://kanban-bb570-default-rtdb.firebaseio.com/statuses/${statusId}.json`,
+            data: updatedStatus
+        })
+            .then(res => dispatch(getStatuses()))
+            .catch(err => console.log(err, 'UPDATE STATUS ERROR'))
+    }
+}
+
+export function changeStatus(card, columns, value) {
+    const statuses = columns.map(el => el.status);
+    const status = statuses[statuses.indexOf(card.status) + value];
+    return (dispatch) => {
+        axios({
+            method: 'PATCH',
+            url: `https://nazarov-kanban-server.herokuapp.com/card/${card._id}`,
+            data: {status}
+        })
+            .then(res => dispatch(getCards()))
+            .catch(err => console.log(err, 'ERROR'))
+    }
+}
+
+export function changePriority(cardId, value) {
+    return (dispatch) => {
+        axios({
+            method: 'PATCH',
+            url: `https://kanban-bb570-default-rtdb.firebaseio.com/cards/${cardId}.json`,
+            data: {priority: value}
+        })
+            .then(res => dispatch(getCards()))
+            .catch(err => console.log(err, 'UPDATE PRIORITY ERROR'))
     }
 }
