@@ -133,7 +133,7 @@ export function changeStatus(card, columns, value) {
     return (dispatch) => {
         axios({
             method: 'PATCH',
-            url: `https://nazarov-kanban-server.herokuapp.com/card/${card._id}`,
+            url: `https://kanban-bb570-default-rtdb.firebaseio.com/cards/${card.id}.json`,
             data: {status}
         })
             .then(res => dispatch(getCards()))

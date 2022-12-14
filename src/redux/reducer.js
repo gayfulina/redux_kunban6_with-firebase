@@ -1,7 +1,13 @@
 const initialState = {
     cards: [],
     statuses: [],
-    priorities: [],
+    priorities: [
+        {priority: 1},
+        {priority: 2},
+        {priority: 3},
+        {priority: 4},
+        {priority: 5},
+    ],
     title: 'Kanban board'
 }
 
