@@ -128,8 +128,8 @@ export function updateStatus(statusId, updatedStatus) {
 }
 
 export function changeStatus(card, columns, value) {
-    const statuses = columns.map(el => el.status);
-    const status = statuses[statuses.indexOf(card.status) + value];
+    const statuses = columns.map(el => el.title);
+    const status =  statuses[statuses.indexOf(card.status) + value];
     return (dispatch) => {
         axios({
             method: 'PATCH',

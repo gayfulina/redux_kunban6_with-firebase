@@ -5,8 +5,8 @@ import {connect} from "react-redux";
 import {changePriority, changeStatus} from "../redux/action";
 
 const CardItem = (props) => {
-    const isLast = props.status === props.statuses[props.statuses.length - 1].status
-    const isFirst = props.status === props.statuses[0].status
+    const isLast = props.card.status === props.statuses[props.statuses.length - 1].title
+    const isFirst = props.card.status === props.statuses[0].title
 
 
     return (
@@ -21,27 +21,35 @@ const CardItem = (props) => {
                 <p className='border-bottom pb-4'>{props.card.description}</p>
 
                 <div className='d-flex justify-content-between align-items-center my-3'>
-                    <Button variant='outlined' color='success'
-                            onClick={() => props.changePriority(props.card.id, props.card.priority + 1)}
+                    <Button
+                        disabled={props.card.priority === 5}
+                        variant='outlined' color='success'
+                        onClick={() => props.changePriority(props.card.id, props.card.priority + 1)}
                     >
                         ↑
                     </Button>
                     <p>{props.card.priority}</p>
-                    <Button variant='outlined' color='success'
-                            onClick={() => props.changePriority(props.card.id, props.card.priority - 1)}
+                    <Button
+                        disabled={props.card.priority === 1}
+                        variant='outlined' color='success'
+                        onClick={() => props.changePriority(props.card.id, props.card.priority - 1)}
                     >
                         ↓
                     </Button>
                 </div>
 
                 <div className='d-flex justify-content-between align-items-center my-3'>
-                    <Button variant='outlined' color='success'
-                            onClick={() => props.changeStatus(props.card, props.status, 1)}
+                    <Button
+                        disabled={isLast}
+                        variant='outlined' color='success'
+                        onClick={() => props.changeStatus(props.card, props.statuses, 1)}
                     >
                         →
                     </Button>
-                    <Button variant='outlined' color='success'
-                            onClick={() => props.changeStatus(props.card, props.status, -1)}
+                    <Button
+                        disabled={isFirst}
+                        variant='outlined' color='success'
+                        onClick={() => props.changeStatus(props.card, props.statuses, -1)}
                     >
                         ←
                     </Button>
