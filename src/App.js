@@ -26,7 +26,7 @@ function App(props) {
 
     const addStatus = (newTitle) => {
         const newStatus = {
-            title: newTitle
+            status: newTitle
         }
         props.addStatuses(newStatus)
     }

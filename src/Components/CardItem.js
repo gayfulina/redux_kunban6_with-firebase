@@ -5,8 +5,8 @@ import {connect} from "react-redux";
 import {changePriority, changeStatus} from "../redux/action";
 
 const CardItem = (props) => {
-    const isLast = props.card.status === props.statuses[props.statuses.length - 1].title
-    const isFirst = props.card.status === props.statuses[0].title
+    const isLast = props.card.status === props.columns[props.columns.length - 1].status
+    const isFirst = props.card.status === props.columns[0].status
 
 
     return (
@@ -42,14 +42,14 @@ const CardItem = (props) => {
                     <Button
                         disabled={isLast}
                         variant='outlined' color='success'
-                        onClick={() => props.changeStatus(props.card, props.statuses, 1)}
+                        onClick={() => props.changeStatus(props.card, props.columns, 1)}
                     >
                         →
                     </Button>
                     <Button
                         disabled={isFirst}
                         variant='outlined' color='success'
-                        onClick={() => props.changeStatus(props.card, props.statuses, -1)}
+                        onClick={() => props.changeStatus(props.card, props.columns, -1)}
                     >
                         ←
                     </Button>
@@ -66,7 +66,7 @@ const CardItem = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    statuses: state.statuses,
+    columns: state.statuses,
 })
 
 const mapDispatchToProps = (dispatch) => ({

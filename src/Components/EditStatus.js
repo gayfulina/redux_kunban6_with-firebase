@@ -5,11 +5,11 @@ import {connect} from "react-redux";
 import {TextField} from "@mui/material";
 
 const EditStatus = (props) => {
-    const [newStatus, setNewStatus] = useState(props.statuses.title)
+    const [newStatus, setNewStatus] = useState(props.column.status)
 
     const editStatusHandler = () => {
-        props.updateStatus(props.statuses.id, {
-            title: newStatus
+        props.updateStatus(props.column.id, {
+           status: newStatus
         })
     };
 

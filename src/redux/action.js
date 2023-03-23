@@ -42,7 +42,7 @@ export function getStatuses() {
                 for (const key in data) {
                     statuses.push({
                         id: key,
-                        title: data[key].title
+                        status: data[key].status
                     })
                 }
 
@@ -128,7 +128,7 @@ export function updateStatus(statusId, updatedStatus) {
 }
 
 export function changeStatus(card, columns, value) {
-    const statuses = columns.map(el => el.title);
+    const statuses = columns.map(el => el.status);
     const status =  statuses[statuses.indexOf(card.status) + value];
     return (dispatch) => {
         axios({
